@@ -82,14 +82,14 @@ Action ComportamientoJugador::think(Sensores sensores){
 	// QUITAR!!!!!!!
 	curr_state.row = sensores.posF;
 	curr_state.col = sensores.posC;
-	curr_state.compass = sensores.sentido;
+	//curr_state.compass = sensores.sentido;
 	position_known = true;
 
 	// Actualizamos matriz
 	updateMap(position_known ? mapaResultado : aux_map, sensores);
 	
 	// Decidimos nueva acción
-	accion = actFORWARD;
+	accion = actTURN_SL;
 
 	// Actualizamos última acción
 	last_action = accion;
@@ -110,7 +110,7 @@ void ComportamientoJugador::updateMap(vector<vector<unsigned char>> & v, Sensore
 		sign = (ori == norte || ori == este) ? -1 : 1;
 		for (int i = 0; i <= 3; ++i) {
 			for (int j = -i; j <= i; ++j) {
-				r = curr_state.row + sign*(ori == norte || ori == sur ? i : j);
+				r = curr_state.row + sign*(ori == norte || ori == sur ? i : -j);
 				c = curr_state.col - sign*(ori == norte || ori == sur ? j : i);
 				v[r][c] = sens.terreno[count++];
 			}
