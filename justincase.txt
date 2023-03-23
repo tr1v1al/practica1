@@ -1,0 +1,52 @@
+	updateMap
+	
+	/*
+	Orientacion ori = curr_state.compass;
+	int count = 0, sign = 0, r = 0, c = 0;
+	// Visión triangular
+	if (ori == norte || ori == sur || ori == este || ori == oeste) {
+		sign = (ori == norte || ori == este) ? -1 : 1;
+		for (int i = 0; i <= 3; ++i) {
+			for (int j = -i; j <= i; ++j) {
+				r = curr_state.row + sign*(ori == norte || ori == sur ? i : -j);
+				c = curr_state.col - sign*(ori == norte || ori == sur ? j : i);
+				v[r][c] = sens.terreno[count++];
+			}
+		}
+	// Visión cuadrada
+	} else {
+		// Genero vista hacia noroeste y hago las rotaciones apropiadas
+		int rot_row = 0, rot_col = 0;
+		for (int i = 0; i <= 3 ; ++i) {
+			c = curr_state.col - i;
+			r = curr_state.row + 1;
+			for (int j = 0; j <= 2*i; ++j) {
+				if (j <= i) {
+					--r;
+				} else {
+					++c;
+				}
+				
+				switch (ori) {
+					case noroeste:
+						rot_row = r;
+						rot_col = c;
+						break;
+					case noreste:
+						rot_row = curr_state.row-curr_state.col+c;
+						rot_col = curr_state.row+curr_state.col-r;
+						break;
+					case sureste:
+						rot_row = 2*curr_state.row-r;
+						rot_col = 2*curr_state.col-c;
+						break;
+					case suroeste:
+						rot_row = curr_state.row+curr_state.col-c;
+						rot_col = curr_state.col-curr_state.row+r;
+						break;
+				}
+				v[rot_row][rot_col] = sens.terreno[count++];
+			}
+		}
+	}
+	*/

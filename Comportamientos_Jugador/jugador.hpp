@@ -13,10 +13,25 @@ struct state{
 class ComportamientoJugador : public Comportamiento{
   private:
   // Declarar aquí las variables de estado
-  
+
   // Booleanos true si conocemos nuestra posicion, tenemos
   // zapato y bikini respectivamente
   bool position_known, shoes_on, bikini_on;
+  // Booleanos que permiten pasar por bosque o agua
+  bool forest_allowed, water_allowed;
+  // Booleano que indica que estoy siguiendo un objeto con prioridad
+  bool follow_priority;
+  // Booleanos que indican que estoy abrazando muro, que lo dejo,
+  // que me he movido después de colisionar con muro, y que me
+  // he movido después de despegarme del muro (para poder detectar
+  // correctamente si estoy en ciclo),
+  // puntos que indican donde empezamos a abrazarlo, el punto donde 
+  // nos despegamos del muro, y el destino
+  bool follow_wall, leave_wall, moved_after_hitting;
+  pair<int,int> hit_point, leave_point, target_point;
+  // Punto de prioridad
+  pair<int,int> priority_point;
+  
   // Estado actual
   state curr_state;
   // Última acción
@@ -33,6 +48,16 @@ class ComportamientoJugador : public Comportamiento{
     position_known = false;
     shoes_on = false;
     bikini_on = false;
+    forest_allowed = false;
+    water_allowed = false;
+    follow_wall = false;
+    leave_wall = false;
+    moved_after_hitting = false;
+    follow_priority = false;
+    priority_point = {-1,-1};
+    hit_point = {-1,-1};
+    leave_point = {-1,-1};
+    target_point = {-1,-1};
     map_width = mapaResultado.size();
     map_length = map_width > 0 ? mapaResultado[0].size() : 0;
     aux_map.resize(2*map_width-1, vector<unsigned char>(2*map_length-1));
@@ -46,7 +71,22 @@ class ComportamientoJugador : public Comportamiento{
         el = '?';
       }
     }
+    // Rellenar matriz resultado con precipicios
+    for (int i = 0; i < 3; ++i) {
+      for (int j = 0; j < map_length; ++j) {
+        mapaResultado[i][j] = 'P';
+        mapaResultado[map_width-i-1][j] = 'P';
+      }
+      for (int j = 0; j < map_width; ++j) {
+        mapaResultado[j][i] = 'P';
+        mapaResultado[j][map_length-i-1] = 'P';
+      }
+    }
   }
+
+  // Función auxiliar que devuelve las coordenadas en el mapa de la celda
+  // número n(0..15) en el campo de visión actual
+  pair<int,int> getCoordinates(int n);
 
   // Función auxiliar que actualiza el mapa auxiliar o el mapa resultado
   // (dependiendo de si conocemos nuestra posición) con información sobre
@@ -62,6 +102,27 @@ class ComportamientoJugador : public Comportamiento{
   
   // Función auxiliar que calcula las coordenadas de la celda '?' sin explorar más cercana 
   pair<int,int> nearestUnexploredCell();
+
+  // Función auxiliar que devuelve true si el caracter es obstáculo
+  bool isObstacle(unsigned char c);  
+
+  // Función auxiliar que devuelve true si las casillas inmediatamente 
+  // delante son '?'
+  bool frontUnexplored();
+
+  // Función auxiliar que devuelve la acción óptima para alcanzar
+  // el punto dado 
+  Action optimalMove(pair<int,int> & p);
+
+  // Función auxiliar que devuelve la distancia al cuadrado  entre puntos
+  int distanceBetween(pair<int,int> & p1, pair<int,int> & p2);
+
+  // Función auxiliar que devuelve true si renta cargar baterías
+  bool worthCharging(Sensores sens);
+
+  // Función auxiliar que devuelve true si en el campo de visión hay
+  // un objeto de interés y en tal caso le pone sus coordenadas a p
+  bool prioritySpotted(Sensores sens, pair<int,int> & p);
 
   public:
     ComportamientoJugador(unsigned int size) : Comportamiento(size){

@@ -8,7 +8,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 
 	Action accion = actIDLE;
 
-	// Actualizamos estado en función de sensores e última acción
+	// Actualizamos estado en función de los sensores y la última acción
 	
 	if (sensores.reset) {	// Agente muerto, respawn en punto random, inicializamos
 		initialize();
@@ -46,9 +46,29 @@ Action ComportamientoJugador::think(Sensores sensores){
 		}
 	}
 
+	// Caso particular del nivel 0
+	if (sensores.nivel == 0) {
+		curr_state.row = sensores.posF;
+		curr_state.col = sensores.posC;
+		curr_state.compass = sensores.sentido;
+		position_known = true;		
+	} 	
+
 	// Actualizamos estado si encontramos booster
 	// En caso de estar posicionado, añadimos la posición del booster
 	// al vector que almacena sus posiciones para futuras vidas
+
+	// Si estabamos siguiendo un punto de prioridad y en el que estamos es
+	// de ese tipo dejamos de seguir
+
+	if (follow_priority) {
+		unsigned char c = position_known ? 
+		mapaResultado[priority_point.first][priority_point.second] : 
+		aux_map[priority_point.first][priority_point.second];
+		if (sensores.terreno[0] == c) {
+			follow_priority = false;			
+		}		
+	}
 
 	switch(sensores.terreno[0]) {
 		// Si encontramos posición
@@ -56,40 +76,210 @@ Action ComportamientoJugador::think(Sensores sensores){
 			if (!position_known) {
 				// Transferimos lo explorado al resultado
 				transferToAnswerMap(sensores);
+				// Si seguimos punto de prioridad que no es G
+				// tenemos que actualizar sus coordenadas a las del
+				// mapa resultado
+				if (follow_priority) {
+					priority_point.first += sensores.posF - curr_state.row;
+					priority_point.second += sensores.posC - curr_state.col;
+				}
 				// Pasamos de coordenadas del mapa auxiliar a las
 				// del mapa resultado
 				curr_state.row = sensores.posF;
 				curr_state.col = sensores.posC;
 				position_known = true;
+				// Dejo de seguir muro
+				follow_wall = false;
 			}
 			break;
 		// Si encontramos zapatos
 		case 'D':
-			shoes_on = true;
+			if (!shoes_on) {
+				// Si encontramos zapatos dejamos de seguir muro
+				shoes_on = true;
+				forest_allowed = true;	
+				follow_wall = false;
+			}
 			if (position_known) {
 				addPosToVector(shoes_locations, {curr_state.row, curr_state.col});
 			}
 			break;
 		// Si encontramos bikini
 		case 'K':
-			bikini_on = true;
+			if (!bikini_on) {
+				bikini_on = true;
+				water_allowed = true;
+				follow_wall = false;
+			}
 			if (position_known) {
 				addPosToVector(bikini_locations, {curr_state.row, curr_state.col});
 			}
 			break;
 	}
 
-	// QUITAR!!!!!!!
-	curr_state.row = sensores.posF;
-	curr_state.col = sensores.posC;
-	//curr_state.compass = sensores.sentido;
-	position_known = true;
-
 	// Actualizamos matriz
 	updateMap(position_known ? mapaResultado : aux_map, sensores);
 	
-	// Decidimos nueva acción
-	accion = actTURN_SL;
+	// COMPORTAMIENTO GENERAL
+	unsigned char izda = sensores.terreno[1], frente = sensores.terreno[2],
+	dcha = sensores.terreno[3];
+
+	// Si no estamos siguiendo punto de prioridad, vemos si hay alguno
+	if (!follow_priority) {
+		pair<int,int> p = {-1,-1}; 
+		if (prioritySpotted(sensores, p)) {
+			follow_priority = true;
+			priority_point = p;
+			follow_wall = false;
+		}
+	}
+
+	// Si estamos abrazando muro y el objetivo ya ha sido visto
+	// dejamos de abrazar muro
+	if (follow_wall && !follow_priority) {
+		unsigned char c = position_known ? 
+		mapaResultado[target_point.first][target_point.second] 
+		: aux_map[target_point.first][target_point.second];
+		if (c != '?') {
+			follow_wall = false;
+		}
+	}
+
+	// Si estamos abrazando muro y estamos en ciclo dejamos
+	// de abrazarlo y permitimos paso por agua y bosque
+	if (follow_wall) {
+		pair<int,int> curr = {curr_state.row, curr_state.col};
+		if (curr == hit_point && moved_after_hitting) {
+			// Estamos en ciclo
+			follow_wall = false;
+			water_allowed = true;
+			forest_allowed = true;
+		}
+	}
+
+	// Si todavía abrazo muro y no hemos terminado ni estamos en ciclo
+	if (follow_wall) {
+		pair<int,int> curr = {curr_state.row, curr_state.col};
+		Action bestAction = optimalMove(target_point);
+		// Si estoy en el punto de choque y puedo ir hacia adelante,
+		// voy y marco que me he movido (para detectar ciclo en el futuro)
+		if (curr == hit_point && !isObstacle(frente)) {
+			accion = actFORWARD;
+			moved_after_hitting = true;
+		} else if (leave_wall) {
+			// Si me he despegado de la pared
+			if (isObstacle(izda) && isObstacle(frente) && isObstacle(dcha)) {
+				leave_wall = false;
+				moved_after_hitting = false;
+				hit_point = curr;
+				leave_point = {-1,-1};		
+				accion = actTURN_SR;		
+			} else if (bestAction == actFORWARD) {
+				accion = !isObstacle(frente) ? actFORWARD : 
+				(!isObstacle(izda) ? actTURN_SL : actTURN_SR);
+			} else if (bestAction == actTURN_SR) {
+				accion = !isObstacle(dcha) ? actTURN_SR : 
+				(!isObstacle(frente) ? actFORWARD : actTURN_SL);
+			} else {
+				accion = !isObstacle(izda) ? actTURN_SL : 
+				(!isObstacle(frente) ? actFORWARD : actTURN_SR);
+			}
+		} else {
+			// Calculo si me debo despegar de la pared
+			// Preferible seguir adelante
+			if (bestAction == actFORWARD) {
+				// Puedo ir adelante
+				if (!isObstacle(frente)) {
+					accion = actFORWARD;
+					// Considero despegarme
+					if (!isObstacle(izda)) {
+						leave_point = curr;
+						// Nos despegamos
+						if (distanceBetween(leave_point, target_point) < 
+						distanceBetween(hit_point, target_point)) {
+							leave_wall = true;
+						} else {
+							accion = actTURN_SL;
+						}
+					}
+				} else {
+					// Si no puedo ir adelante, giro a la izquierda si hay huecho,
+					// si no a la derecha
+					accion = !isObstacle(izda) ? 
+					actTURN_SL : actTURN_SR;
+				}
+			} else if (bestAction == actTURN_SR) {
+				// Considero despegarme
+				if (!isObstacle(frente)) {
+					leave_point = curr;
+					if (distanceBetween(leave_point, target_point) >= 
+						distanceBetween(hit_point, target_point)) {
+						accion = !isObstacle(izda) ? actTURN_SL : actFORWARD;
+					} else {
+						leave_wall = true;
+						accion = actTURN_SR;
+					}
+				} else {
+					accion = !isObstacle(izda) ? actTURN_SL : actTURN_SR;
+				}
+			} else {
+				accion = !isObstacle(izda) ? actTURN_SL : 
+				(!isObstacle(frente) ? actFORWARD : actTURN_SR);
+			}
+		}
+
+	} else if (!isObstacle(frente) && frontUnexplored() && !follow_priority) {
+		// Si podemos movernos adelante y hay algo sin explorar 
+		// inmediatamente nos movemos adelante
+		accion = actFORWARD;
+	} else if (isObstacle(izda) && isObstacle(frente) 
+		&& isObstacle(dcha)) {
+		// Si estamos bloqueados calculamos celda '?' más cercana
+		// y la acción preferible. Si seguimos punto prioritario el más cercano
+		// será ese
+		pair<int,int> nearest = follow_priority ? priority_point : nearestUnexploredCell();
+		Action bestAction = optimalMove(nearest);
+		// Si la acción preferible no es girar hacia atrás empezamos
+		// a abrazar el muro. Lo sigo a mano izquierda.
+		if (bestAction != actTURN_BL && bestAction != actTURN_BR) {
+			follow_wall = true;
+			leave_wall = false;
+			moved_after_hitting = false;
+			hit_point = {curr_state.row, curr_state.col};
+			leave_point = {-1,-1};
+			target_point = nearest;
+			accion = actTURN_SR;
+		} else {
+			// Si lo que queríamos era ir hacia atrás, giramos
+			accion = bestAction;
+		}
+	} else {
+		// Si no está bloqueado el camino, calculamos la celda más cercana
+		// y la acción preferible. Si seguimos punto prioritario, ese será el elegido
+		pair<int,int> nearest = follow_priority ? priority_point : nearestUnexploredCell();
+		Action bestAction = optimalMove(nearest);
+		if (last_action == actTURN_BR && isObstacle(frente) && isObstacle(izda)) {
+			accion = actTURN_SL;
+		} else if (last_action == actTURN_BL && isObstacle(frente) && isObstacle(dcha)) {
+			accion = actTURN_SR;
+		} else if (bestAction == actFORWARD) {
+			// Si es seguir hacia adelante, lo intentamos y si no es 
+			// posible, giramos
+			accion = !isObstacle(frente) ? actFORWARD : 
+			(!isObstacle(dcha) ? actTURN_SR : actTURN_SL);
+		} else if (bestAction == actTURN_SR) {
+			// Lo mismo para giro a la derecha
+			accion = !isObstacle(dcha) ? actTURN_SR : 
+			(!isObstacle(frente) ? actFORWARD : actTURN_SL);
+		} else if (bestAction == actTURN_SL) {
+			// Lo mismo para giro a la izquierda
+			accion = !isObstacle(izda) ? actTURN_SL : 
+			(!isObstacle(frente) ? actFORWARD : actTURN_SR);
+		} else {
+			// Si lo preferible es girar hacia atrás, lo hacemos
+			accion = bestAction;
+		}
+	}
 
 	// Actualizamos última acción
 	last_action = accion;
@@ -102,54 +292,63 @@ int ComportamientoJugador::interact(Action accion, int valor){
   return false;
 }
 
-void ComportamientoJugador::updateMap(vector<vector<unsigned char>> & v, Sensores sens) {
+pair<int,int> ComportamientoJugador::getCoordinates(int n) {
+	// Posición y orientación actual
 	Orientacion ori = curr_state.compass;
-	int count = 0, sign = 0, r = 0, c = 0;
-	// Visión triangular
-	if (ori == norte || ori == sur || ori == este || ori == oeste) {
-		sign = (ori == norte || ori == este) ? -1 : 1;
-		for (int i = 0; i <= 3; ++i) {
-			for (int j = -i; j <= i; ++j) {
-				r = curr_state.row + sign*(ori == norte || ori == sur ? i : -j);
-				c = curr_state.col - sign*(ori == norte || ori == sur ? j : i);
-				v[r][c] = sens.terreno[count++];
-			}
-		}
-	// Visión cuadrada
-	} else {
-		// Genero vista hacia noroeste y hago las rotaciones apropiadas
-		int rot_row = 0, rot_col = 0;
-		for (int i = 0; i <= 3 ; ++i) {
-			c = curr_state.col - i;
-			r = curr_state.row + 1;
-			for (int j = 0; j <= 2*i; ++j) {
-				if (j <= i) {
-					--r;
+	int x = curr_state.row, y = curr_state.col;
+	int r = 0, c = 0, rot_r = 0, rot_c = 0;
+	// Contador de celda de terreno
+	int count = 0;
+
+	// Calculo coordenadas de celda que interesa como si estuviesemos 
+	// situados en el origen y mirando hacia el norte/noreste
+	for (int i = 0; i < 4; ++i) {
+		for (int j = 0; j <= 2*i; ++j) {
+			if (count == n) {
+				if (ori == norte || ori == sur || ori == este || ori == oeste) {
+					r = -i;
+					c = j-i;
 				} else {
-					++c;
+					r = j <= i ? -i : j-2*i;
+					c = j <= i ? j : i;
 				}
-				
-				switch (ori) {
-					case noroeste:
-						rot_row = r;
-						rot_col = c;
-						break;
-					case noreste:
-						rot_row = curr_state.row-curr_state.col+c;
-						rot_col = curr_state.row+curr_state.col-r;
-						break;
-					case sureste:
-						rot_row = 2*curr_state.row-r;
-						rot_col = 2*curr_state.col-c;
-						break;
-					case suroeste:
-						rot_row = curr_state.row+curr_state.col-c;
-						rot_col = curr_state.col-curr_state.row+r;
-						break;
-				}
-				v[rot_row][rot_col] = sens.terreno[count++];
 			}
+			++count;
 		}
+	}
+
+	// Rotamos
+	switch (ori) {
+	case norte: case noreste:
+		rot_r = r;
+		rot_c = c;
+		break;
+	case este: case sureste:
+		rot_r = c;
+		rot_c = -r;			
+		break;
+	case sur: case suroeste:
+		rot_r = -r;
+		rot_c = -c;			
+		break;
+	case oeste: case noroeste:
+		rot_r = -c;
+		rot_c = r;			
+		break;
+	}
+
+	// Trasladamos
+	rot_r += x;
+	rot_c += y;
+	
+	return {rot_r, rot_c};
+}
+
+void ComportamientoJugador::updateMap(vector<vector<unsigned char>> & v, Sensores sens) {
+	pair<int,int> point;
+	for (int i = 0; i < 16; ++i) {
+		point = getCoordinates(i);
+		v[point.first][point.second] = sens.terreno[i];
 	}
 }
 
@@ -168,7 +367,9 @@ void ComportamientoJugador::transferToAnswerMap(Sensores sens) {
 	for (int i = 0; i < map_width; ++i) {
 		for (int j = 0; j < map_length; ++j) {
 			// Rellenamos mapa resultado
-			mapaResultado[i][j] = aux_map[r+i][c+j];
+			if (mapaResultado[i][j] == '?') {
+				mapaResultado[i][j] = aux_map[r+i][c+j];
+			}
 			cell = mapaResultado[i][j];
 			// Añadimos boosters encontrados
 			if (cell == 'D') {
@@ -248,4 +449,216 @@ pair<int,int> ComportamientoJugador::nearestUnexploredCell() {
 	}
 
 	return answer;
+}
+
+bool ComportamientoJugador::isObstacle(unsigned char c) {
+	return c == 'P' || c == 'M' || 
+	(c == 'A' && !water_allowed) || (c == 'B' && !forest_allowed);
+} 
+
+bool ComportamientoJugador::frontUnexplored() {
+	// Dimensiones del mapa
+	int rows = position_known ? map_width : 2*map_width - 1;
+	int cols = position_known ? map_length : 2*map_length - 1;
+	// Posición y orientación actual
+	Orientacion ori = curr_state.compass;
+	int x = curr_state.row, y = curr_state.col;
+	int r = 0, c = 0, rot_r = 0, rot_c = 0;
+	// Recorremos las 7 celdas delanteras
+	// Trabajo con norte y noreste, después hago rotación adecuada
+	for (int i = 0; i < 7; ++i) {
+		// Traslación de la posición actual al origen
+		if (ori == norte || ori == sur || ori == este || ori == oeste) {
+			r = -4;
+			c = i-3;
+		} else {
+			if (i <= 3) {
+				r = -4;
+				c = i+1;
+			} else {
+				r = i-7;
+				c = 4;
+			}
+		}
+
+		// Rotación según orientación
+		switch (ori) {
+		case norte: case noreste:
+			rot_r = r;
+			rot_c = c;
+			break;
+		case este: case sureste:
+			rot_r = c;
+			rot_c = -r;			
+			break;
+		case sur: case suroeste:
+			rot_r = -r;
+			rot_c = -c;			
+			break;
+		case oeste: case noroeste:
+			rot_r = -c;
+			rot_c = r;			
+			break;
+		}
+		// Traslación a la posición correspondiente
+		rot_r += x;
+		rot_c += y;
+		
+		// Comprobación de que hay algo en la celda
+		if (rot_r < rows && rot_r >= 0 && rot_c < cols && rot_c >= 0) {
+			unsigned char carac = position_known ? mapaResultado[rot_r][rot_c] :
+			aux_map[rot_r][rot_c];
+			if (carac == '?') {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+Action ComportamientoJugador::optimalMove(pair<int,int> & p){
+	Orientacion ori = curr_state.compass;
+	// Trasladamos posición actual al origen
+	int x = 0, y = 0;
+	int r = p.first - curr_state.row, c = p.second - curr_state.col, sector = 0;
+
+	// Rotamos hacia norte/noreste
+	switch (ori) {
+	case norte: case noreste:
+		x = r;
+		y = c;
+		break;
+	case este: case sureste:
+		x = -c;
+		y = r;			
+		break;
+	case sur: case suroeste:
+		x = -r;
+		y = -c;			
+		break;
+	case oeste: case noroeste:
+		x = c;
+		y = -r;			
+		break;
+	}
+
+	// Divido el mapa en 8 sectores mediante líneas que pasan
+	// por nuestra posición con un ángulo de 45 grados de separación
+	// Calculo en qué sector se encuentra el punto p
+	// 0 es norte-noreste, 1 es noreste-este, etc. en sentido de las agujas del reloj
+
+	if (ori == norte || ori == sur || ori == este || ori == oeste) {
+		if (y >= 0) {
+			if (x <= 0) {
+				sector = y < -x ? 0 : 1;
+			} else {
+				sector = y >= x ? 2 : 3;
+			}
+		} else {
+			if (x > 0) {
+				sector = y >= -x ? 4 : 5;
+			} else {
+				sector = y <= x ? 6 : 7;
+			}
+		}
+	} else {
+		if (y >= -x) {
+			if (y >= x) {
+				sector = x < 0 ? 0 : 1;
+			} else {
+				sector = y > 0 ? 2 : 3;
+			}
+		} else {
+			if (y < x) {
+				sector = x > 0 ? 4 : 5;
+			} else {
+				sector = y <= 0 ? 6 : 7;
+			}
+		}
+	}
+
+	// Mi acción óptima la elijo como: adelante si el sector es 7/0,
+	// giro 45 grados a la derecha si 1, giro 135 grados a la derecha si
+	// 2/3, giro 135 grados a la izquierda si 4/5, y 45 si 6
+	if (sector == 1) {
+		return actTURN_SR;
+	} else if (sector == 2 || sector == 3) {
+		return actTURN_BR;
+	} else if (sector == 4 || sector == 5) {
+		return actTURN_BL;
+	} else if (sector == 6) {
+		return actTURN_SL;
+	}
+
+	return actFORWARD;
+
+	/*
+	// Orientación convertida a entero
+	int ori = curr_state.compass;
+	// Coordenadas de p si centramos nuestra posición en el origen
+	int x = p.first - curr_state.row, y = p.second - curr_state.col;
+	int sector = 0;
+	// Divido el mapa en 8 sectores mediante líneas que pasan
+	// por nuestra posición con un ángulo de 45 grados de separación
+	// Calculo en qué sector se encuentra el punto p
+	// 0 es norte-noreste, 1 es noreste-este, etc. en sentido de las agujas del reloj
+
+	if (y >= 0) {
+		if (x <= 0) {
+			sector = y < -x ? 0 : 1;
+		} else {
+			sector = y >= x ? 2 : 3;
+		}
+	} else {
+		if (x > 0) {
+			sector = y >= -x ? 4 : 5;
+		} else {
+			sector = y <= x ? 6 : 7;
+		}
+	}
+
+	// El agente puede estar orientado en 8 direcciones distintas
+	// Si giro al agente hacia el norte y giro el sector, la acción 
+	// escogida sería la misma
+	sector = (sector - ori + 8)%8;
+
+	// Ahora tenemos al agente "mirando" al norte
+	// Mi acción óptima la elijo como: adelante si el sector es 7/0,
+	// giro 45 grados a la derecha si 1, giro 135 grados a la derecha si
+	// 2/3, giro 135 grados a la izquierda si 4/5, y 45 si 6
+	if (sector == 1) {
+		return actTURN_SR;
+	} else if (sector == 2 || sector == 3) {
+		return actTURN_BR;
+	} else if (sector == 4 || sector == 5) {
+		return actTURN_BL;
+	} else if (sector == 6) {
+		return actTURN_SL;
+	}
+
+	return actFORWARD;
+	*/
+} 
+
+int ComportamientoJugador::distanceBetween(pair<int,int> & p1, pair<int,int> & p2) {
+	return (p1.first-p2.first)*(p1.first-p2.first)
+	+(p1.second-p2.second)*(p1.second-p2.second);
+}
+
+bool ComportamientoJugador::worthCharging(Sensores sens) {
+	return false;
+} 
+
+bool ComportamientoJugador::prioritySpotted(Sensores sens, pair<int,int> & p) {
+	unsigned char c;
+	bool worth_charging = worthCharging(sens);
+	for (int i = 1; i < 16; ++i) {
+		c = sens.terreno[i];
+		if (!position_known && c == 'G' || !shoes_on && c == 'D'
+		|| !bikini_on && c == 'K' || worth_charging && c == 'X') {
+			p = getCoordinates(i);
+			return true;
+		}
+	}
+	return false;
 }
