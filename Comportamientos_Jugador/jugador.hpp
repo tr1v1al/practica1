@@ -22,16 +22,19 @@ class ComportamientoJugador : public Comportamiento{
   // Booleano que indica que estoy siguiendo un objeto con prioridad
   bool follow_priority;
   // Booleanos que indican que estoy abrazando muro, que lo dejo,
-  // que me he movido después de colisionar con muro, y que me
-  // he movido después de despegarme del muro (para poder detectar
-  // correctamente si estoy en ciclo),
+  // que me he movido después de colisionar con muro, y si la dirección
+  // en la que giro siempre al colisionar es la derecha
   // puntos que indican donde empezamos a abrazarlo, el punto donde 
   // nos despegamos del muro, y el destino
-  bool follow_wall, leave_wall, moved_after_hitting;
+  bool follow_wall, leave_wall, moved_after_hitting, follow_right;
   pair<int,int> hit_point, leave_point, target_point;
+  // Orientación inicial al chocar (para saber si estoy encerrado)  
+  Orientacion init_ori;
   // Punto de prioridad
   pair<int,int> priority_point;
-  
+  // Entero con el número de turnos desde la última recarga
+  int turns_without_charging;
+
   // Estado actual
   state curr_state;
   // Última acción
@@ -53,11 +56,14 @@ class ComportamientoJugador : public Comportamiento{
     follow_wall = false;
     leave_wall = false;
     moved_after_hitting = false;
+    follow_right = true;
+    init_ori = norte;
     follow_priority = false;
     priority_point = {-1,-1};
     hit_point = {-1,-1};
     leave_point = {-1,-1};
     target_point = {-1,-1};
+    turns_without_charging = 0;
     map_width = mapaResultado.size();
     map_length = map_width > 0 ? mapaResultado[0].size() : 0;
     aux_map.resize(2*map_width-1, vector<unsigned char>(2*map_length-1));
@@ -123,6 +129,14 @@ class ComportamientoJugador : public Comportamiento{
   // Función auxiliar que devuelve true si en el campo de visión hay
   // un objeto de interés y en tal caso le pone sus coordenadas a p
   bool prioritySpotted(Sensores sens, pair<int,int> & p);
+
+  // Función auxiliar que devuelve true si es preferible esperar un turno
+  // en vez de ir hacia delante
+  bool avoidNPC(Sensores sens);
+
+  // Función auxiliar que devuelve true si para llegar al punto p dado
+  // es preferible girar a la derecha para abrazar el muro
+  bool followWallRight(pair<int,int> p);
 
   public:
     ComportamientoJugador(unsigned int size) : Comportamiento(size){

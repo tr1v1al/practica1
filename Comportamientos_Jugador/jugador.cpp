@@ -123,6 +123,19 @@ Action ComportamientoJugador::think(Sensores sensores){
 	// COMPORTAMIENTO GENERAL
 	unsigned char izda = sensores.terreno[1], frente = sensores.terreno[2],
 	dcha = sensores.terreno[3];
+	// Incrementamos turnos sin cargar
+	++turns_without_charging;
+
+	// Vemos si podemos retirar permiso de paso por agua/bosque
+	if (!shoes_on && forest_allowed || !bikini_on && water_allowed) {
+		bool old_forest = forest_allowed, old_water = water_allowed;
+		water_allowed = bikini_on;
+		forest_allowed = shoes_on;
+		if (isObstacle(dcha) && isObstacle(frente) && isObstacle(izda)) {
+			water_allowed = old_water;
+			forest_allowed = old_forest;		
+		}
+	}
 
 	// Si no estamos siguiendo punto de prioridad, vemos si hay alguno
 	if (!follow_priority) {
@@ -149,7 +162,8 @@ Action ComportamientoJugador::think(Sensores sensores){
 	// de abrazarlo y permitimos paso por agua y bosque
 	if (follow_wall) {
 		pair<int,int> curr = {curr_state.row, curr_state.col};
-		if (curr == hit_point && moved_after_hitting) {
+		if (curr == hit_point && 
+		(moved_after_hitting || init_ori == curr_state.compass)) {
 			// Estamos en ciclo
 			follow_wall = false;
 			water_allowed = true;
@@ -157,8 +171,12 @@ Action ComportamientoJugador::think(Sensores sensores){
 		}
 	}
 
-	// Si todavía abrazo muro y no hemos terminado ni estamos en ciclo
-	if (follow_wall) {
+	// Si estamos en casilla de recarga seguimos si hace falta
+	if (sensores.terreno[0] == 'X' && worthCharging(sensores)) {
+		accion = actIDLE;
+		turns_without_charging = 0;
+	} else if (follow_wall) {
+		// Si todavía abrazo muro y no hemos terminado ni estamos en ciclo
 		pair<int,int> curr = {curr_state.row, curr_state.col};
 		Action bestAction = optimalMove(target_point);
 		// Si estoy en el punto de choque y puedo ir hacia adelante,
@@ -245,10 +263,13 @@ Action ComportamientoJugador::think(Sensores sensores){
 			follow_wall = true;
 			leave_wall = false;
 			moved_after_hitting = false;
+			init_ori = curr_state.compass;
 			hit_point = {curr_state.row, curr_state.col};
 			leave_point = {-1,-1};
 			target_point = nearest;
-			accion = actTURN_SR;
+			// Elegimos dirección de giro
+			follow_right = followWallRight(target_point);
+			accion = follow_right ? actTURN_SR : actTURN_SL;
 		} else {
 			// Si lo que queríamos era ir hacia atrás, giramos
 			accion = bestAction;
@@ -279,6 +300,11 @@ Action ComportamientoJugador::think(Sensores sensores){
 			// Si lo preferible es girar hacia atrás, lo hacemos
 			accion = bestAction;
 		}
+	}
+
+	// Gestión de superficie
+	if (accion == actFORWARD && avoidNPC(sensores)) {
+		accion = actIDLE;
 	}
 
 	// Actualizamos última acción
@@ -646,12 +672,12 @@ int ComportamientoJugador::distanceBetween(pair<int,int> & p1, pair<int,int> & p
 }
 
 bool ComportamientoJugador::worthCharging(Sensores sens) {
-	return false;
+	return sens.vida * 3.5 > sens.bateria && sens.bateria < 5000;
 } 
 
 bool ComportamientoJugador::prioritySpotted(Sensores sens, pair<int,int> & p) {
 	unsigned char c;
-	bool worth_charging = worthCharging(sens);
+	bool worth_charging = turns_without_charging > 300 && worthCharging(sens);
 	for (int i = 1; i < 16; ++i) {
 		c = sens.terreno[i];
 		if (!position_known && c == 'G' || !shoes_on && c == 'D'
@@ -662,3 +688,18 @@ bool ComportamientoJugador::prioritySpotted(Sensores sens, pair<int,int> & p) {
 	}
 	return false;
 }
+
+bool ComportamientoJugador::avoidNPC(Sensores sens) {
+
+	if (sens.superficie[2] == 'l' || sens.superficie[5] == 'l' || sens.superficie[6] == 'l' 
+	|| sens.superficie[7] == 'l' || sens.superficie[2] == 'a' ) {
+		return true;
+	}
+	return false;
+}
+
+bool ComportamientoJugador::followWallRight(pair<int,int> p) {
+	return true;
+}
+
+
