@@ -191,7 +191,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 				moved_after_hitting = false;
 				hit_point = curr;
 				leave_point = {-1,-1};		
-				accion = actTURN_SR;		
+				accion = follow_right ? actTURN_SR : actTURN_SL;		
 			} else if (bestAction == actFORWARD) {
 				accion = !isObstacle(frente) ? actFORWARD : 
 				(!isObstacle(izda) ? actTURN_SL : actTURN_SR);
@@ -209,40 +209,60 @@ Action ComportamientoJugador::think(Sensores sensores){
 				// Puedo ir adelante
 				if (!isObstacle(frente)) {
 					accion = actFORWARD;
-					// Considero despegarme
-					if (!isObstacle(izda)) {
+					// Considero despegarme (depende de follow_right)
+					if (follow_right && !isObstacle(izda) || 
+						!follow_right && !isObstacle(dcha)) {
 						leave_point = curr;
 						// Nos despegamos
 						if (distanceBetween(leave_point, target_point) < 
 						distanceBetween(hit_point, target_point)) {
 							leave_wall = true;
 						} else {
-							accion = actTURN_SL;
+							accion = follow_right ? actTURN_SL : actTURN_SR;
 						}
 					}
 				} else {
 					// Si no puedo ir adelante, giro a la izquierda si hay huecho,
-					// si no a la derecha
-					accion = !isObstacle(izda) ? 
-					actTURN_SL : actTURN_SR;
+					// si no a la derecha (o al reves, depende de follow_right)
+					if (follow_right) {
+						accion = !isObstacle(izda) ? 
+						actTURN_SL : actTURN_SR;
+					} else {
+						accion = !isObstacle(dcha) ? 
+						actTURN_SR : actTURN_SL;
+					}
 				}
-			} else if (bestAction == actTURN_SR) {
+			} else if (follow_right && bestAction == actTURN_SR ||
+				!follow_right && bestAction == actTURN_SL) {
 				// Considero despegarme
 				if (!isObstacle(frente)) {
 					leave_point = curr;
 					if (distanceBetween(leave_point, target_point) >= 
 						distanceBetween(hit_point, target_point)) {
-						accion = !isObstacle(izda) ? actTURN_SL : actFORWARD;
+						if (follow_right) {
+							accion = !isObstacle(izda) ? actTURN_SL : actFORWARD;
+						} else {
+							accion = !isObstacle(dcha) ? actTURN_SR : actFORWARD;
+						}
 					} else {
 						leave_wall = true;
-						accion = actTURN_SR;
+						accion = follow_right ? actTURN_SR : actTURN_SL;
 					}
 				} else {
-					accion = !isObstacle(izda) ? actTURN_SL : actTURN_SR;
+					if (follow_right) {
+						accion = !isObstacle(izda) ? actTURN_SL : actTURN_SR;
+					} else {
+						accion = !isObstacle(dcha) ? actTURN_SR : actTURN_SL;
+					}
 				}
 			} else {
-				accion = !isObstacle(izda) ? actTURN_SL : 
-				(!isObstacle(frente) ? actFORWARD : actTURN_SR);
+				if (follow_right) {
+					accion = !isObstacle(izda) ? actTURN_SL : 
+					(!isObstacle(frente) ? actFORWARD : actTURN_SR);
+				} else {
+					accion = !isObstacle(dcha) ? actTURN_SR : 
+					(!isObstacle(frente) ? actFORWARD : actTURN_SL);					
+				}
 			}
 		}
 
@@ -699,7 +719,100 @@ bool ComportamientoJugador::avoidNPC(Sensores sens) {
 }
 
 bool ComportamientoJugador::followWallRight(pair<int,int> p) {
-	return true;
+	pair<int,int> wall_right = getCoordinates(2), wall_left = wall_right;
+	pair<int,int> curr_right = {curr_state.row, curr_state.col}, curr_left = curr_right;
+	pair<int,int> next_cell = {-1,-1};
+	int dist_right = distanceBetween(curr_right, p), dist_left = dist_right;
+	unsigned char c;
+	int num = 0;
+
+	for (int i = 0; i < 100; ++i) {
+		// Dirección derecha
+		next_cell = wall_right;
+		c = position_known ? mapaResultado[next_cell.first][next_cell.second] : 
+		aux_map[next_cell.first][next_cell.second];
+		num = 0;
+		while (isObstacle(c)) {
+			++num;
+			if (num > 9) {
+				return true;
+			}
+			wall_right = next_cell;			
+			if (next_cell.first+1 == curr_right.first) {
+			// Arriba
+				if (next_cell.second-1 == curr_right.second) {
+					++next_cell.first;
+				} else {
+					++next_cell.second;
+				}
+			} else if (next_cell.first-1 == curr_right.first) {
+			// Abajo
+				if (next_cell.second+1 == curr_right.second) {
+					--next_cell.first;
+				} else {
+					--next_cell.second;
+				}
+			} else {
+			// En medio
+				if (next_cell.second+1 == curr_right.second) {
+					--next_cell.first;
+				} else {
+					++next_cell.first;
+				}
+			}
+			c = position_known ? mapaResultado[next_cell.first][next_cell.second] : 
+			aux_map[next_cell.first][next_cell.second];
+		}
+		curr_right = next_cell;
+		if (c == '?') {
+			return true;
+		}		
+		dist_right = min(dist_right, distanceBetween(p, curr_right));
+
+		//Dirección izquierda
+		next_cell = wall_left;
+		c = position_known ? mapaResultado[next_cell.first][next_cell.second] : 
+		aux_map[next_cell.first][next_cell.second];
+		num = 0;
+		while (isObstacle(c)) {
+			++num;
+			if (num > 9) {
+				return true;
+			}			
+			wall_left = next_cell;			
+			if (next_cell.first+1 == curr_left.first) {
+			// Arriba
+				if (next_cell.second+1 == curr_left.second) {
+					++next_cell.first;
+				} else {
+					--next_cell.second;
+				}
+			} else if (next_cell.first-1 == curr_left.first) {
+			// Abajo
+				if (next_cell.second-1 == curr_left.second) {
+					--next_cell.first;
+				} else {
+					++next_cell.second;
+				}
+			} else {
+			// En medio
+				if (next_cell.second+1 == curr_left.second) {
+					++next_cell.first;
+				} else {
+					--next_cell.first;
+				}
+			}
+			c = position_known ? mapaResultado[next_cell.first][next_cell.second] : 
+			aux_map[next_cell.first][next_cell.second];
+		}
+		curr_left = next_cell;
+		if (c == '?') {
+			return false;
+		}		
+		dist_left = min(dist_left, distanceBetween(p, curr_left));
+	}
+
+	return dist_right < dist_left;
 }
 
 

@@ -63,7 +63,7 @@ class ComportamientoJugador : public Comportamiento{
     hit_point = {-1,-1};
     leave_point = {-1,-1};
     target_point = {-1,-1};
-    turns_without_charging = 0;
+    //turns_without_charging = 0;
     map_width = mapaResultado.size();
     map_length = map_width > 0 ? mapaResultado[0].size() : 0;
     aux_map.resize(2*map_width-1, vector<unsigned char>(2*map_length-1));
@@ -143,6 +143,7 @@ class ComportamientoJugador : public Comportamiento{
       // Constructor de la clase
       // Dar el valor inicial a las variables de estado
       initialize();
+      turns_without_charging = 0;
     }
 
     ComportamientoJugador(const ComportamientoJugador & comport) : Comportamiento(comport){}
