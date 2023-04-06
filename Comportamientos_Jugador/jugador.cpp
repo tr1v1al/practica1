@@ -158,6 +158,11 @@ Action ComportamientoJugador::think(Sensores sensores){
 		}
 	}
 
+	// Caso especial de respawn en agua
+	if (sensores.terreno[0] == 'A' && !water_allowed) {
+		water_allowed = true;
+	}
+
 	// Si estamos abrazando muro y estamos en ciclo dejamos
 	// de abrazarlo y permitimos paso por agua y bosque
 	if (follow_wall) {
@@ -222,7 +227,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 						}
 					}
 				} else {
-					// Si no puedo ir adelante, giro a la izquierda si hay huecho,
+					// Si no puedo ir adelante, giro a la izquierda si hay hueco,
 					// si no a la derecha (o al reves, depende de follow_right)
 					if (follow_right) {
 						accion = !isObstacle(izda) ? 
@@ -265,6 +270,18 @@ Action ComportamientoJugador::think(Sensores sensores){
 				}
 			}
 		}
+		// Caso especial de giro grande
+		if (hard_turn && !leave_wall) {
+			accion = follow_right ? actTURN_SL : actTURN_SR;
+			hard_turn = false;
+		} else if (!hard_turn) {
+			Orientacion ori = curr_state.compass;
+			unsigned char c = follow_right ? sensores.terreno[4] : sensores.terreno[8];
+			if ((ori == noreste || ori == sureste || 
+			ori == suroeste || ori == noroeste) && accion == actFORWARD && !isObstacle(c)) {
+				hard_turn = true;
+			}
+		}
 
 	} else if (!isObstacle(frente) && frontUnexplored() && !follow_priority) {
 		// Si podemos movernos adelante y hay algo sin explorar 
@@ -283,6 +300,7 @@ Action ComportamientoJugador::think(Sensores sensores){
 			follow_wall = true;
 			leave_wall = false;
 			moved_after_hitting = false;
+			hard_turn = false;
 			init_ori = curr_state.compass;
 			hit_point = {curr_state.row, curr_state.col};
 			leave_point = {-1,-1};
@@ -697,7 +715,7 @@ bool ComportamientoJugador::worthCharging(Sensores sens) {
 
 bool ComportamientoJugador::prioritySpotted(Sensores sens, pair<int,int> & p) {
 	unsigned char c;
-	bool worth_charging = turns_without_charging > 300 && worthCharging(sens);
+	bool worth_charging = turns_without_charging > 100 && worthCharging(sens);
 	for (int i = 1; i < 16; ++i) {
 		c = sens.terreno[i];
 		if (!position_known && c == 'G' || !shoes_on && c == 'D'

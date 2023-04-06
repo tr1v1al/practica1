@@ -27,6 +27,9 @@ class ComportamientoJugador : public Comportamiento{
   // puntos que indican donde empezamos a abrazarlo, el punto donde 
   // nos despegamos del muro, y el destino
   bool follow_wall, leave_wall, moved_after_hitting, follow_right;
+  // Booleana para un caso muy especial cuando tenemos que rodear un 
+  // muro en diagonal (hace falta dibujo para entenderlo)
+  bool hard_turn;
   pair<int,int> hit_point, leave_point, target_point;
   // Orientación inicial al chocar (para saber si estoy encerrado)  
   Orientacion init_ori;
@@ -57,6 +60,7 @@ class ComportamientoJugador : public Comportamiento{
     leave_wall = false;
     moved_after_hitting = false;
     follow_right = true;
+    hard_turn = false;
     init_ori = norte;
     follow_priority = false;
     priority_point = {-1,-1};

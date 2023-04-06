@@ -1,0 +1,1129 @@
+3 3
+Porcentaje de mapa descubierto: 100
+3 4
+Porcentaje de mapa descubierto: 100
+3 5
+Porcentaje de mapa descubierto: 100
+3 6
+Porcentaje de mapa descubierto: 100
+3 7
+Porcentaje de mapa descubierto: 100
+3 8
+Porcentaje de mapa descubierto: 100
+3 9
+Porcentaje de mapa descubierto: 100
+3 10
+Porcentaje de mapa descubierto: 100
+3 11
+Porcentaje de mapa descubierto: 100
+3 12
+Porcentaje de mapa descubierto: 100
+3 13
+Porcentaje de mapa descubierto: 100
+3 14
+Porcentaje de mapa descubierto: 100
+3 15
+Porcentaje de mapa descubierto: 100
+3 16
+Porcentaje de mapa descubierto: 100
+3 17
+Porcentaje de mapa descubierto: 100
+3 18
+Porcentaje de mapa descubierto: 100
+3 19
+Porcentaje de mapa descubierto: 100
+3 20
+Porcentaje de mapa descubierto: 100
+3 21
+Porcentaje de mapa descubierto: 100
+3 22
+Porcentaje de mapa descubierto: 100
+3 23
+Porcentaje de mapa descubierto: 100
+3 24
+Porcentaje de mapa descubierto: 100
+3 25
+Porcentaje de mapa descubierto: 100
+3 26
+Porcentaje de mapa descubierto: 100
+4 3
+Porcentaje de mapa descubierto: 100
+4 4
+Porcentaje de mapa descubierto: 100
+4 5
+Porcentaje de mapa descubierto: 100
+4 6
+Porcentaje de mapa descubierto: 100
+4 7
+Porcentaje de mapa descubierto: 100
+4 8
+Porcentaje de mapa descubierto: 100
+4 9
+Porcentaje de mapa descubierto: 100
+4 10
+Porcentaje de mapa descubierto: 100
+4 11
+Porcentaje de mapa descubierto: 100
+4 12
+Porcentaje de mapa descubierto: 100
+4 13
+Porcentaje de mapa descubierto: 100
+4 14
+Porcentaje de mapa descubierto: 100
+4 15
+Porcentaje de mapa descubierto: 100
+4 16
+Porcentaje de mapa descubierto: 100
+4 17
+Porcentaje de mapa descubierto: 100
+4 18
+Porcentaje de mapa descubierto: 100
+4 19
+Porcentaje de mapa descubierto: 100
+4 20
+Porcentaje de mapa descubierto: 100
+4 21
+Porcentaje de mapa descubierto: 100
+4 22
+Porcentaje de mapa descubierto: 100
+4 23
+Porcentaje de mapa descubierto: 100
+4 24
+Porcentaje de mapa descubierto: 100
+4 25
+Porcentaje de mapa descubierto: 100
+4 26
+Porcentaje de mapa descubierto: 100
+5 3
+Porcentaje de mapa descubierto: 100
+5 4
+Porcentaje de mapa descubierto: 100
+5 5
+Porcentaje de mapa descubierto: 100
+5 6
+Porcentaje de mapa descubierto: 100
+5 7
+Porcentaje de mapa descubierto: 100
+5 8
+Porcentaje de mapa descubierto: 100
+5 9
+Porcentaje de mapa descubierto: 100
+5 10
+Porcentaje de mapa descubierto: 100
+5 11
+Porcentaje de mapa descubierto: 100
+5 12
+Porcentaje de mapa descubierto: 100
+5 13
+Porcentaje de mapa descubierto: 100
+5 14
+Porcentaje de mapa descubierto: 100
+5 15
+Porcentaje de mapa descubierto: 100
+5 16
+Porcentaje de mapa descubierto: 100
+5 17
+Porcentaje de mapa descubierto: 100
+5 18
+Porcentaje de mapa descubierto: 100
+5 19
+Porcentaje de mapa descubierto: 100
+5 20
+Porcentaje de mapa descubierto: 100
+5 21
+Porcentaje de mapa descubierto: 100
+5 22
+Porcentaje de mapa descubierto: 100
+5 23
+Porcentaje de mapa descubierto: 100
+5 24
+Porcentaje de mapa descubierto: 100
+5 25
+Porcentaje de mapa descubierto: 100
+5 26
+Porcentaje de mapa descubierto: 100
+6 3
+Porcentaje de mapa descubierto: 100
+6 4
+Porcentaje de mapa descubierto: 100
+6 5
+Porcentaje de mapa descubierto: 100
+6 6
+Porcentaje de mapa descubierto: 100
+6 7
+Porcentaje de mapa descubierto: 100
+6 8
+Porcentaje de mapa descubierto: 100
+6 9
+Porcentaje de mapa descubierto: 100
+6 10
+Porcentaje de mapa descubierto: 100
+6 11
+Porcentaje de mapa descubierto: 100
+6 12
+Porcentaje de mapa descubierto: 100
+6 13
+Porcentaje de mapa descubierto: 100
+6 14
+Porcentaje de mapa descubierto: 100
+6 15
+Porcentaje de mapa descubierto: 100
+6 16
+Porcentaje de mapa descubierto: 100
+6 17
+Porcentaje de mapa descubierto: 100
+6 18
+Porcentaje de mapa descubierto: 100
+6 19
+Porcentaje de mapa descubierto: 100
+6 20
+Porcentaje de mapa descubierto: 100
+6 21
+Porcentaje de mapa descubierto: 100
+6 22
+Porcentaje de mapa descubierto: 100
+6 23
+Porcentaje de mapa descubierto: 100
+6 24
+Porcentaje de mapa descubierto: 100
+6 25
+Porcentaje de mapa descubierto: 100
+6 26
+Porcentaje de mapa descubierto: 100
+7 3
+Porcentaje de mapa descubierto: 100
+7 4
+Porcentaje de mapa descubierto: 100
+7 5
+Porcentaje de mapa descubierto: 100
+7 6
+Porcentaje de mapa descubierto: 100
+7 7
+Porcentaje de mapa descubierto: 100
+7 8
+Porcentaje de mapa descubierto: 100
+7 9
+Porcentaje de mapa descubierto: 100
+7 10
+Porcentaje de mapa descubierto: 100
+7 11
+Porcentaje de mapa descubierto: 100
+7 12
+Porcentaje de mapa descubierto: 100
+7 13
+Porcentaje de mapa descubierto: 100
+7 14
+Porcentaje de mapa descubierto: 100
+7 15
+Porcentaje de mapa descubierto: 100
+7 16
+Porcentaje de mapa descubierto: 100
+7 17
+Porcentaje de mapa descubierto: 100
+7 18
+Porcentaje de mapa descubierto: 100
+7 19
+Porcentaje de mapa descubierto: 100
+7 20
+Porcentaje de mapa descubierto: 100
+7 21
+Porcentaje de mapa descubierto: 100
+7 22
+Porcentaje de mapa descubierto: 100
+7 23
+Porcentaje de mapa descubierto: 100
+7 24
+Porcentaje de mapa descubierto: 100
+7 25
+Porcentaje de mapa descubierto: 100
+7 26
+Porcentaje de mapa descubierto: 100
+8 3
+Porcentaje de mapa descubierto: 100
+8 4
+Porcentaje de mapa descubierto: 100
+8 5
+Porcentaje de mapa descubierto: 100
+8 6
+Porcentaje de mapa descubierto: 100
+8 7
+Porcentaje de mapa descubierto: 100
+8 8
+Porcentaje de mapa descubierto: 100
+8 9
+Porcentaje de mapa descubierto: 100
+8 10
+Porcentaje de mapa descubierto: 100
+8 11
+Porcentaje de mapa descubierto: 100
+8 12
+Porcentaje de mapa descubierto: 100
+8 13
+Porcentaje de mapa descubierto: 100
+8 14
+Porcentaje de mapa descubierto: 100
+8 15
+Porcentaje de mapa descubierto: 100
+8 16
+Porcentaje de mapa descubierto: 100
+8 17
+Porcentaje de mapa descubierto: 100
+8 18
+Porcentaje de mapa descubierto: 100
+8 19
+Porcentaje de mapa descubierto: 100
+8 20
+Porcentaje de mapa descubierto: 100
+8 21
+Porcentaje de mapa descubierto: 100
+8 22
+Porcentaje de mapa descubierto: 100
+8 23
+Porcentaje de mapa descubierto: 100
+8 24
+Porcentaje de mapa descubierto: 100
+8 25
+Porcentaje de mapa descubierto: 100
+8 26
+Porcentaje de mapa descubierto: 100
+9 3
+Porcentaje de mapa descubierto: 100
+9 4
+Porcentaje de mapa descubierto: 100
+9 5
+Porcentaje de mapa descubierto: 100
+9 6
+Porcentaje de mapa descubierto: 100
+9 7
+Porcentaje de mapa descubierto: 100
+9 8
+Porcentaje de mapa descubierto: 100
+9 9
+Porcentaje de mapa descubierto: 100
+9 10
+Porcentaje de mapa descubierto: 100
+9 11
+Porcentaje de mapa descubierto: 100
+9 12
+Porcentaje de mapa descubierto: 100
+9 13
+Porcentaje de mapa descubierto: 100
+9 14
+Porcentaje de mapa descubierto: 100
+9 15
+Porcentaje de mapa descubierto: 100
+9 16
+Porcentaje de mapa descubierto: 100
+9 17
+Porcentaje de mapa descubierto: 100
+9 18
+Porcentaje de mapa descubierto: 100
+9 19
+Porcentaje de mapa descubierto: 100
+9 20
+Porcentaje de mapa descubierto: 100
+9 21
+Porcentaje de mapa descubierto: 100
+9 22
+Porcentaje de mapa descubierto: 100
+9 23
+Porcentaje de mapa descubierto: 100
+9 24
+Porcentaje de mapa descubierto: 100
+9 25
+Porcentaje de mapa descubierto: 100
+9 26
+Porcentaje de mapa descubierto: 100
+10 3
+Porcentaje de mapa descubierto: 100
+10 4
+Porcentaje de mapa descubierto: 100
+10 5
+Porcentaje de mapa descubierto: 100
+10 6
+Porcentaje de mapa descubierto: 100
+10 7
+Porcentaje de mapa descubierto: 100
+10 8
+Porcentaje de mapa descubierto: 100
+10 9
+Porcentaje de mapa descubierto: 100
+10 10
+Porcentaje de mapa descubierto: 100
+10 11
+Porcentaje de mapa descubierto: 100
+10 12
+Porcentaje de mapa descubierto: 100
+10 13
+Porcentaje de mapa descubierto: 100
+10 14
+Porcentaje de mapa descubierto: 100
+10 15
+Porcentaje de mapa descubierto: 100
+10 16
+Porcentaje de mapa descubierto: 100
+10 17
+Porcentaje de mapa descubierto: 100
+10 18
+Porcentaje de mapa descubierto: 100
+10 19
+Porcentaje de mapa descubierto: 100
+10 20
+Porcentaje de mapa descubierto: 100
+10 21
+Porcentaje de mapa descubierto: 100
+10 22
+Porcentaje de mapa descubierto: 100
+10 23
+Porcentaje de mapa descubierto: 100
+10 24
+Porcentaje de mapa descubierto: 100
+10 25
+Porcentaje de mapa descubierto: 100
+10 26
+Porcentaje de mapa descubierto: 100
+11 3
+Porcentaje de mapa descubierto: 100
+11 4
+Porcentaje de mapa descubierto: 100
+11 5
+Porcentaje de mapa descubierto: 100
+11 6
+Porcentaje de mapa descubierto: 100
+11 7
+Porcentaje de mapa descubierto: 100
+11 8
+Porcentaje de mapa descubierto: 100
+11 9
+Porcentaje de mapa descubierto: 100
+11 10
+Porcentaje de mapa descubierto: 100
+11 11
+Porcentaje de mapa descubierto: 100
+11 12
+Porcentaje de mapa descubierto: 100
+11 13
+Porcentaje de mapa descubierto: 100
+11 14
+Porcentaje de mapa descubierto: 100
+11 15
+Porcentaje de mapa descubierto: 100
+11 16
+Porcentaje de mapa descubierto: 100
+11 17
+Porcentaje de mapa descubierto: 100
+11 18
+Porcentaje de mapa descubierto: 100
+11 19
+Porcentaje de mapa descubierto: 100
+11 20
+Porcentaje de mapa descubierto: 100
+11 21
+Porcentaje de mapa descubierto: 100
+11 22
+Porcentaje de mapa descubierto: 100
+11 23
+Porcentaje de mapa descubierto: 100
+11 24
+Porcentaje de mapa descubierto: 100
+11 25
+Porcentaje de mapa descubierto: 100
+11 26
+Porcentaje de mapa descubierto: 100
+12 3
+Porcentaje de mapa descubierto: 100
+12 4
+Porcentaje de mapa descubierto: 100
+12 5
+Porcentaje de mapa descubierto: 100
+12 6
+Porcentaje de mapa descubierto: 100
+12 7
+Porcentaje de mapa descubierto: 100
+12 8
+Porcentaje de mapa descubierto: 100
+12 9
+Porcentaje de mapa descubierto: 100
+12 10
+Porcentaje de mapa descubierto: 100
+12 11
+Porcentaje de mapa descubierto: 100
+12 12
+Porcentaje de mapa descubierto: 100
+12 13
+Porcentaje de mapa descubierto: 100
+12 14
+Porcentaje de mapa descubierto: 100
+12 15
+Porcentaje de mapa descubierto: 100
+12 16
+Porcentaje de mapa descubierto: 100
+12 17
+Porcentaje de mapa descubierto: 100
+12 18
+Porcentaje de mapa descubierto: 100
+12 19
+Porcentaje de mapa descubierto: 100
+12 20
+Porcentaje de mapa descubierto: 100
+12 21
+Porcentaje de mapa descubierto: 100
+12 22
+Porcentaje de mapa descubierto: 100
+12 23
+Porcentaje de mapa descubierto: 100
+12 24
+Porcentaje de mapa descubierto: 100
+12 25
+Porcentaje de mapa descubierto: 100
+12 26
+Porcentaje de mapa descubierto: 100
+13 3
+Porcentaje de mapa descubierto: 100
+13 4
+Porcentaje de mapa descubierto: 100
+13 5
+Porcentaje de mapa descubierto: 100
+13 6
+Porcentaje de mapa descubierto: 100
+13 7
+Porcentaje de mapa descubierto: 100
+13 8
+Porcentaje de mapa descubierto: 100
+13 9
+Porcentaje de mapa descubierto: 100
+13 10
+Porcentaje de mapa descubierto: 100
+13 11
+Porcentaje de mapa descubierto: 100
+13 12
+Porcentaje de mapa descubierto: 100
+13 13
+Porcentaje de mapa descubierto: 100
+13 14
+Porcentaje de mapa descubierto: 100
+13 15
+Porcentaje de mapa descubierto: 36
+13 16
+Porcentaje de mapa descubierto: 100
+13 17
+Porcentaje de mapa descubierto: 100
+13 18
+Porcentaje de mapa descubierto: 100
+13 19
+Porcentaje de mapa descubierto: 100
+13 20
+Porcentaje de mapa descubierto: 100
+13 21
+Porcentaje de mapa descubierto: 100
+13 22
+Porcentaje de mapa descubierto: 100
+13 23
+Porcentaje de mapa descubierto: 100
+13 24
+Porcentaje de mapa descubierto: 100
+13 25
+Porcentaje de mapa descubierto: 100
+13 26
+Porcentaje de mapa descubierto: 100
+14 3
+Porcentaje de mapa descubierto: 100
+14 4
+Porcentaje de mapa descubierto: 100
+14 5
+Porcentaje de mapa descubierto: 100
+14 6
+Porcentaje de mapa descubierto: 100
+14 7
+Porcentaje de mapa descubierto: 100
+14 8
+Porcentaje de mapa descubierto: 100
+14 9
+Porcentaje de mapa descubierto: 100
+14 10
+Porcentaje de mapa descubierto: 100
+14 11
+Porcentaje de mapa descubierto: 100
+14 12
+Porcentaje de mapa descubierto: 100
+14 13
+Porcentaje de mapa descubierto: 100
+14 14
+Porcentaje de mapa descubierto: 100
+14 15
+Porcentaje de mapa descubierto: 36
+14 16
+Porcentaje de mapa descubierto: 100
+14 17
+Porcentaje de mapa descubierto: 100
+14 18
+Porcentaje de mapa descubierto: 100
+14 19
+Porcentaje de mapa descubierto: 100
+14 20
+Porcentaje de mapa descubierto: 100
+14 21
+Porcentaje de mapa descubierto: 100
+14 22
+Porcentaje de mapa descubierto: 100
+14 23
+Porcentaje de mapa descubierto: 100
+14 24
+Porcentaje de mapa descubierto: 100
+14 25
+Porcentaje de mapa descubierto: 100
+14 26
+Porcentaje de mapa descubierto: 100
+15 3
+Porcentaje de mapa descubierto: 100
+15 4
+Porcentaje de mapa descubierto: 100
+15 5
+Porcentaje de mapa descubierto: 100
+15 6
+Porcentaje de mapa descubierto: 100
+15 7
+Porcentaje de mapa descubierto: 100
+15 8
+Porcentaje de mapa descubierto: 100
+15 9
+Porcentaje de mapa descubierto: 100
+15 10
+Porcentaje de mapa descubierto: 100
+15 11
+Porcentaje de mapa descubierto: 100
+15 12
+Porcentaje de mapa descubierto: 100
+15 13
+Porcentaje de mapa descubierto: 100
+15 14
+Porcentaje de mapa descubierto: 100
+15 15
+Porcentaje de mapa descubierto: 36
+15 16
+Porcentaje de mapa descubierto: 100
+15 17
+Porcentaje de mapa descubierto: 100
+15 18
+Porcentaje de mapa descubierto: 100
+15 19
+Porcentaje de mapa descubierto: 100
+15 20
+Porcentaje de mapa descubierto: 100
+15 21
+Porcentaje de mapa descubierto: 100
+15 22
+Porcentaje de mapa descubierto: 100
+15 23
+Porcentaje de mapa descubierto: 100
+15 24
+Porcentaje de mapa descubierto: 100
+15 25
+Porcentaje de mapa descubierto: 100
+15 26
+Porcentaje de mapa descubierto: 100
+16 3
+Porcentaje de mapa descubierto: 100
+16 4
+Porcentaje de mapa descubierto: 100
+16 5
+Porcentaje de mapa descubierto: 100
+16 6
+Porcentaje de mapa descubierto: 100
+16 7
+Porcentaje de mapa descubierto: 100
+16 8
+Porcentaje de mapa descubierto: 100
+16 9
+Porcentaje de mapa descubierto: 100
+16 10
+Porcentaje de mapa descubierto: 100
+16 11
+Porcentaje de mapa descubierto: 100
+16 12
+Porcentaje de mapa descubierto: 100
+16 13
+Porcentaje de mapa descubierto: 100
+16 14
+Porcentaje de mapa descubierto: 100
+16 15
+Porcentaje de mapa descubierto: 100
+16 16
+Porcentaje de mapa descubierto: 100
+16 17
+Porcentaje de mapa descubierto: 100
+16 18
+Porcentaje de mapa descubierto: 100
+16 19
+Porcentaje de mapa descubierto: 100
+16 20
+Porcentaje de mapa descubierto: 100
+16 21
+Porcentaje de mapa descubierto: 100
+16 22
+Porcentaje de mapa descubierto: 100
+16 23
+Porcentaje de mapa descubierto: 100
+16 24
+Porcentaje de mapa descubierto: 100
+16 25
+Porcentaje de mapa descubierto: 100
+16 26
+Porcentaje de mapa descubierto: 100
+17 3
+Porcentaje de mapa descubierto: 100
+17 4
+Porcentaje de mapa descubierto: 100
+17 5
+Porcentaje de mapa descubierto: 100
+17 6
+Porcentaje de mapa descubierto: 100
+17 7
+Porcentaje de mapa descubierto: 100
+17 8
+17 9
+17 10
+17 11
+17 12
+17 13
+17 14
+17 15
+Porcentaje de mapa descubierto: 100
+17 16
+Porcentaje de mapa descubierto: 100
+17 17
+Porcentaje de mapa descubierto: 100
+17 18
+Porcentaje de mapa descubierto: 100
+17 19
+Porcentaje de mapa descubierto: 100
+17 20
+Porcentaje de mapa descubierto: 100
+17 21
+Porcentaje de mapa descubierto: 100
+17 22
+Porcentaje de mapa descubierto: 100
+17 23
+Porcentaje de mapa descubierto: 100
+17 24
+Porcentaje de mapa descubierto: 100
+17 25
+Porcentaje de mapa descubierto: 100
+17 26
+Porcentaje de mapa descubierto: 100
+18 3
+Porcentaje de mapa descubierto: 100
+18 4
+Porcentaje de mapa descubierto: 100
+18 5
+Porcentaje de mapa descubierto: 100
+18 6
+Porcentaje de mapa descubierto: 100
+18 7
+Porcentaje de mapa descubierto: 100
+18 8
+18 9
+Porcentaje de mapa descubierto: 100
+18 10
+Porcentaje de mapa descubierto: 100
+18 11
+Porcentaje de mapa descubierto: 100
+18 12
+Porcentaje de mapa descubierto: 100
+18 13
+Porcentaje de mapa descubierto: 100
+18 14
+18 15
+Porcentaje de mapa descubierto: 100
+18 16
+Porcentaje de mapa descubierto: 100
+18 17
+Porcentaje de mapa descubierto: 100
+18 18
+Porcentaje de mapa descubierto: 100
+18 19
+Porcentaje de mapa descubierto: 100
+18 20
+Porcentaje de mapa descubierto: 100
+18 21
+Porcentaje de mapa descubierto: 100
+18 22
+Porcentaje de mapa descubierto: 100
+18 23
+Porcentaje de mapa descubierto: 100
+18 24
+Porcentaje de mapa descubierto: 100
+18 25
+Porcentaje de mapa descubierto: 100
+18 26
+Porcentaje de mapa descubierto: 100
+19 3
+Porcentaje de mapa descubierto: 100
+19 4
+Porcentaje de mapa descubierto: 100
+19 5
+Porcentaje de mapa descubierto: 100
+19 6
+Porcentaje de mapa descubierto: 100
+19 7
+Porcentaje de mapa descubierto: 100
+19 8
+19 9
+Porcentaje de mapa descubierto: 100
+19 10
+Porcentaje de mapa descubierto: 100
+19 11
+Porcentaje de mapa descubierto: 100
+19 12
+Porcentaje de mapa descubierto: 100
+19 13
+Porcentaje de mapa descubierto: 100
+19 14
+19 15
+Porcentaje de mapa descubierto: 100
+19 16
+Porcentaje de mapa descubierto: 100
+19 17
+Porcentaje de mapa descubierto: 100
+19 18
+Porcentaje de mapa descubierto: 100
+19 19
+Porcentaje de mapa descubierto: 100
+19 20
+Porcentaje de mapa descubierto: 100
+19 21
+Porcentaje de mapa descubierto: 100
+19 22
+Porcentaje de mapa descubierto: 100
+19 23
+Porcentaje de mapa descubierto: 100
+19 24
+Porcentaje de mapa descubierto: 100
+19 25
+Porcentaje de mapa descubierto: 100
+19 26
+Porcentaje de mapa descubierto: 100
+20 3
+Porcentaje de mapa descubierto: 100
+20 4
+Porcentaje de mapa descubierto: 100
+20 5
+Porcentaje de mapa descubierto: 100
+20 6
+Porcentaje de mapa descubierto: 100
+20 7
+Porcentaje de mapa descubierto: 100
+20 8
+20 9
+Porcentaje de mapa descubierto: 100
+20 10
+Porcentaje de mapa descubierto: 100
+20 11
+Porcentaje de mapa descubierto: 100
+20 12
+Porcentaje de mapa descubierto: 100
+20 13
+Porcentaje de mapa descubierto: 100
+20 14
+Porcentaje de mapa descubierto: 100
+20 15
+Porcentaje de mapa descubierto: 100
+20 16
+Porcentaje de mapa descubierto: 100
+20 17
+Porcentaje de mapa descubierto: 100
+20 18
+Porcentaje de mapa descubierto: 100
+20 19
+Porcentaje de mapa descubierto: 100
+20 20
+Porcentaje de mapa descubierto: 100
+20 21
+Porcentaje de mapa descubierto: 100
+20 22
+Porcentaje de mapa descubierto: 100
+20 23
+Porcentaje de mapa descubierto: 100
+20 24
+Porcentaje de mapa descubierto: 100
+20 25
+Porcentaje de mapa descubierto: 100
+20 26
+Porcentaje de mapa descubierto: 100
+21 3
+Porcentaje de mapa descubierto: 100
+21 4
+Porcentaje de mapa descubierto: 100
+21 5
+Porcentaje de mapa descubierto: 100
+21 6
+Porcentaje de mapa descubierto: 100
+21 7
+Porcentaje de mapa descubierto: 100
+21 8
+21 9
+Porcentaje de mapa descubierto: 100
+21 10
+Porcentaje de mapa descubierto: 100
+21 11
+Porcentaje de mapa descubierto: 100
+21 12
+Porcentaje de mapa descubierto: 100
+21 13
+Porcentaje de mapa descubierto: 100
+21 14
+21 15
+Porcentaje de mapa descubierto: 100
+21 16
+Porcentaje de mapa descubierto: 100
+21 17
+Porcentaje de mapa descubierto: 100
+21 18
+Porcentaje de mapa descubierto: 100
+21 19
+Porcentaje de mapa descubierto: 100
+21 20
+Porcentaje de mapa descubierto: 100
+21 21
+Porcentaje de mapa descubierto: 100
+21 22
+Porcentaje de mapa descubierto: 100
+21 23
+Porcentaje de mapa descubierto: 100
+21 24
+Porcentaje de mapa descubierto: 100
+21 25
+Porcentaje de mapa descubierto: 100
+21 26
+Porcentaje de mapa descubierto: 100
+22 3
+Porcentaje de mapa descubierto: 100
+22 4
+Porcentaje de mapa descubierto: 100
+22 5
+Porcentaje de mapa descubierto: 100
+22 6
+Porcentaje de mapa descubierto: 100
+22 7
+Porcentaje de mapa descubierto: 100
+22 8
+22 9
+Porcentaje de mapa descubierto: 100
+22 10
+Porcentaje de mapa descubierto: 100
+22 11
+Porcentaje de mapa descubierto: 100
+22 12
+Porcentaje de mapa descubierto: 100
+22 13
+Porcentaje de mapa descubierto: 100
+22 14
+22 15
+Porcentaje de mapa descubierto: 100
+22 16
+Porcentaje de mapa descubierto: 100
+22 17
+Porcentaje de mapa descubierto: 100
+22 18
+Porcentaje de mapa descubierto: 100
+22 19
+Porcentaje de mapa descubierto: 100
+22 20
+Porcentaje de mapa descubierto: 100
+22 21
+Porcentaje de mapa descubierto: 100
+22 22
+Porcentaje de mapa descubierto: 100
+22 23
+Porcentaje de mapa descubierto: 100
+22 24
+Porcentaje de mapa descubierto: 100
+22 25
+Porcentaje de mapa descubierto: 100
+22 26
+Porcentaje de mapa descubierto: 100
+23 3
+Porcentaje de mapa descubierto: 100
+23 4
+Porcentaje de mapa descubierto: 100
+23 5
+Porcentaje de mapa descubierto: 100
+23 6
+Porcentaje de mapa descubierto: 100
+23 7
+Porcentaje de mapa descubierto: 100
+23 8
+23 9
+23 10
+23 11
+23 12
+23 13
+23 14
+23 15
+Porcentaje de mapa descubierto: 100
+23 16
+Porcentaje de mapa descubierto: 100
+23 17
+Porcentaje de mapa descubierto: 100
+23 18
+Porcentaje de mapa descubierto: 100
+23 19
+Porcentaje de mapa descubierto: 100
+23 20
+Porcentaje de mapa descubierto: 100
+23 21
+Porcentaje de mapa descubierto: 100
+23 22
+Porcentaje de mapa descubierto: 100
+23 23
+Porcentaje de mapa descubierto: 100
+23 24
+Porcentaje de mapa descubierto: 100
+23 25
+Porcentaje de mapa descubierto: 100
+23 26
+Porcentaje de mapa descubierto: 100
+24 3
+Porcentaje de mapa descubierto: 100
+24 4
+Porcentaje de mapa descubierto: 100
+24 5
+Porcentaje de mapa descubierto: 100
+24 6
+Porcentaje de mapa descubierto: 100
+24 7
+Porcentaje de mapa descubierto: 100
+24 8
+Porcentaje de mapa descubierto: 100
+24 9
+Porcentaje de mapa descubierto: 100
+24 10
+Porcentaje de mapa descubierto: 100
+24 11
+Porcentaje de mapa descubierto: 100
+24 12
+Porcentaje de mapa descubierto: 100
+24 13
+Porcentaje de mapa descubierto: 100
+24 14
+Porcentaje de mapa descubierto: 100
+24 15
+Porcentaje de mapa descubierto: 100
+24 16
+Porcentaje de mapa descubierto: 100
+24 17
+Porcentaje de mapa descubierto: 100
+24 18
+Porcentaje de mapa descubierto: 100
+24 19
+Porcentaje de mapa descubierto: 100
+24 20
+Porcentaje de mapa descubierto: 100
+24 21
+Porcentaje de mapa descubierto: 100
+24 22
+Porcentaje de mapa descubierto: 100
+24 23
+Porcentaje de mapa descubierto: 100
+24 24
+Porcentaje de mapa descubierto: 100
+24 25
+Porcentaje de mapa descubierto: 100
+24 26
+Porcentaje de mapa descubierto: 100
+25 3
+Porcentaje de mapa descubierto: 100
+25 4
+Porcentaje de mapa descubierto: 100
+25 5
+Porcentaje de mapa descubierto: 100
+25 6
+Porcentaje de mapa descubierto: 100
+25 7
+Porcentaje de mapa descubierto: 100
+25 8
+Porcentaje de mapa descubierto: 100
+25 9
+Porcentaje de mapa descubierto: 100
+25 10
+Porcentaje de mapa descubierto: 100
+25 11
+Porcentaje de mapa descubierto: 100
+25 12
+Porcentaje de mapa descubierto: 100
+25 13
+Porcentaje de mapa descubierto: 100
+25 14
+Porcentaje de mapa descubierto: 100
+25 15
+Porcentaje de mapa descubierto: 100
+25 16
+Porcentaje de mapa descubierto: 100
+25 17
+Porcentaje de mapa descubierto: 100
+25 18
+Porcentaje de mapa descubierto: 100
+25 19
+Porcentaje de mapa descubierto: 100
+25 20
+Porcentaje de mapa descubierto: 100
+25 21
+Porcentaje de mapa descubierto: 100
+25 22
+Porcentaje de mapa descubierto: 100
+25 23
+Porcentaje de mapa descubierto: 100
+25 24
+Porcentaje de mapa descubierto: 100
+25 25
+Porcentaje de mapa descubierto: 100
+25 26
+Porcentaje de mapa descubierto: 100
+26 3
+Porcentaje de mapa descubierto: 100
+26 4
+Porcentaje de mapa descubierto: 100
+26 5
+Porcentaje de mapa descubierto: 100
+26 6
+Porcentaje de mapa descubierto: 100
+26 7
+Porcentaje de mapa descubierto: 100
+26 8
+Porcentaje de mapa descubierto: 100
+26 9
+Porcentaje de mapa descubierto: 100
+26 10
+Porcentaje de mapa descubierto: 100
+26 11
+Porcentaje de mapa descubierto: 100
+26 12
+Porcentaje de mapa descubierto: 100
+26 13
+Porcentaje de mapa descubierto: 100
+26 14
+Porcentaje de mapa descubierto: 100
+26 15
+Porcentaje de mapa descubierto: 100
+26 16
+Porcentaje de mapa descubierto: 100
+26 17
+Porcentaje de mapa descubierto: 100
+26 18
+Porcentaje de mapa descubierto: 100
+26 19
+Porcentaje de mapa descubierto: 100
+26 20
+Porcentaje de mapa descubierto: 100
+26 21
+Porcentaje de mapa descubierto: 100
+26 22
+Porcentaje de mapa descubierto: 100
+26 23
+Porcentaje de mapa descubierto: 100
+26 24
+Porcentaje de mapa descubierto: 100
+26 25
+Porcentaje de mapa descubierto: 100
+26 26
+Porcentaje de mapa descubierto: 100
